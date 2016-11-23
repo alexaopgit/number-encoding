@@ -2,7 +2,7 @@
 
 ## Building number-encoding locally
 ```
-	git clone https://github.com/alexaop/number-encoding.git
+	git clone https://github.com/alexaopgit/number-encoding.git
 	cd number-encoding
 	./mvnw package
 ```
