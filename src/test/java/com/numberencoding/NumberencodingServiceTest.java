@@ -58,4 +58,26 @@ public class NumberencodingServiceTest {
         Assert.assertNotNull(content);
 //        System.out.println(content);
     }
+
+    @Test
+    public void test3() throws IOException {
+        File dictionaryFile = new ClassPathResource("test3/dictionary.txt", getClass()).getFile();
+        File inputFile = new ClassPathResource("test3/input.txt", getClass()).getFile();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        new NumberencodingService(dictionaryFile).doEncoding(inputFile, new PrintStream(baos));
+
+        String content = new String(baos.toByteArray(), StandardCharsets.UTF_8);
+
+        Assert.assertEquals(
+                        "/78698/37395746288: Koch 8 du 3 Hab Tirol\n" +
+                        "/78698/37395746288: Koch 8 du 3 gab Tirol\n" +
+                        "/78698/37395746288: Koch 8 Sud Hab Tirol\n" +
+                        "/78698/37395746288: Koch 8 Sud gab Tirol\n" +
+                        "/78698/37395746288: bo\"ig 8 du 3 Hab Tirol\n" +
+                        "/78698/37395746288: bo\"ig 8 du 3 gab Tirol\n" +
+                        "/78698/37395746288: bo\"ig 8 Sud Hab Tirol\n" +
+                        "/78698/37395746288: bo\"ig 8 Sud gab Tirol\n", content);
+    }
 }
